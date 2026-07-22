@@ -3,7 +3,7 @@ import React from "react";
 const initialState = { count: 0, step: 1 };
 
 const reducer = (state, action) => {
-  console.log(state, action);
+  // console.log(state, action);
 
   switch (action.type) {
     case "dec":
