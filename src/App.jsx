@@ -27,7 +27,12 @@ const reducer = (state, action) => {
 };
 
 function App() {
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+  const [{ questions, status }, dispatch] = React.useReducer(
+    reducer,
+    initialState,
+  );
+
+  const numQuestions = questions.length;
 
   React.useEffect(() => {
     fetch("http://localhost:8000/questions")
@@ -45,7 +50,7 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <Main />
+      <Main status={status} numQuestions={numQuestions} />
     </div>
   );
 }
