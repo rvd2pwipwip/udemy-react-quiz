@@ -21,6 +21,11 @@ const reducer = (state, action) => {
         ...state,
         status: "error",
       };
+    case "start":
+      return {
+        ...state,
+        status: "active",
+      };
     default:
       throw new Error("Action unknown");
   }
@@ -50,7 +55,7 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <Main status={status} numQuestions={numQuestions} />
+      <Main status={status} numQuestions={numQuestions} dispatch={dispatch} />
     </div>
   );
 }
