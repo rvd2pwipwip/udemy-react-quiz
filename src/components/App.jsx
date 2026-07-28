@@ -7,9 +7,13 @@ const initialState = {
   // 'loading', 'error', 'ready', 'active', 'finished'
   status: "loading",
   index: 0,
+  answer: null,
+  points: 0,
 };
 
 const reducer = (state, action) => {
+  const question = state.questions[state.index];
+
   switch (action.type) {
     case "dataReceived":
       return {
@@ -27,13 +31,22 @@ const reducer = (state, action) => {
         ...state,
         status: "active",
       };
+    case "newAnswer":
+      return {
+        ...state,
+        answer: action.payload,
+        points:
+          action.payload === question.correctOption
+            ? state.points + question.points
+            : state.points,
+      };
     default:
       throw new Error("Action unknown");
   }
 };
 
 function App() {
-  const [{ questions, status, index }, dispatch] = React.useReducer(
+  const [{ questions, status, index, answer }, dispatch] = React.useReducer(
     reducer,
     initialState,
   );
@@ -62,6 +75,7 @@ function App() {
         dispatch={dispatch}
         questions={questions}
         index={index}
+        answer={answer}
       />
     </div>
   );

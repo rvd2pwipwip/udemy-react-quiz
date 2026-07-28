@@ -1,10 +1,10 @@
 import Options from "./Options";
 
-const Question = ({ question }) => {
+const Question = ({ question, dispatch, answer }) => {
   return (
     <div>
       <h4>{question.question}</h4>
-      <Options options={question.options} />
+      <Options question={question} dispatch={dispatch} answer={answer} />
     </div>
   );
 };
