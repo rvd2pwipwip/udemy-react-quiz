@@ -6,6 +6,7 @@ const initialState = {
   questions: [],
   // 'loading', 'error', 'ready', 'active', 'finished'
   status: "loading",
+  index: 0,
 };
 
 const reducer = (state, action) => {
@@ -32,7 +33,7 @@ const reducer = (state, action) => {
 };
 
 function App() {
-  const [{ questions, status }, dispatch] = React.useReducer(
+  const [{ questions, status, index }, dispatch] = React.useReducer(
     reducer,
     initialState,
   );
@@ -55,7 +56,13 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <Main status={status} numQuestions={numQuestions} dispatch={dispatch} />
+      <Main
+        status={status}
+        numQuestions={numQuestions}
+        dispatch={dispatch}
+        questions={questions}
+        index={index}
+      />
     </div>
   );
 }

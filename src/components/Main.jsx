@@ -3,7 +3,7 @@ import Error from "./Error.jsx";
 import Start from "./Start.jsx";
 import Question from "./Question.jsx";
 
-const Main = ({ status, numQuestions, dispatch }) => {
+const Main = ({ status, numQuestions, dispatch, questions, index }) => {
   return (
     <main className="main">
       {status === "loading" && <Loader />}
@@ -11,7 +11,7 @@ const Main = ({ status, numQuestions, dispatch }) => {
       {status === "ready" && (
         <Start numQuestions={numQuestions} dispatch={dispatch} />
       )}
-      {status === "active" && <Question />}
+      {status === "active" && <Question question={questions[index]} />}
     </main>
   );
 };
