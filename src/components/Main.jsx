@@ -2,6 +2,7 @@ import Loader from "./Loader.jsx";
 import Error from "./Error.jsx";
 import Start from "./Start.jsx";
 import Question from "./Question.jsx";
+import NextButton from "./NextButton";
 
 const Main = ({ status, numQuestions, dispatch, questions, index, answer }) => {
   return (
@@ -12,11 +13,14 @@ const Main = ({ status, numQuestions, dispatch, questions, index, answer }) => {
         <Start numQuestions={numQuestions} dispatch={dispatch} />
       )}
       {status === "active" && (
-        <Question
-          question={questions[index]}
-          dispatch={dispatch}
-          answer={answer}
-        />
+        <>
+          <Question
+            question={questions[index]}
+            dispatch={dispatch}
+            answer={answer}
+          />
+          <NextButton dispatch={dispatch} answer={answer} />
+        </>
       )}
     </main>
   );
