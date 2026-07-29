@@ -52,12 +52,15 @@ const reducer = (state, action) => {
 };
 
 function App() {
-  const [{ questions, status, index, answer }, dispatch] = React.useReducer(
-    reducer,
-    initialState,
-  );
+  const [{ questions, status, index, answer, points }, dispatch] =
+    React.useReducer(reducer, initialState);
 
   const numQuestions = questions.length;
+
+  const maxPossiblePoints = questions.reduce(
+    (prev, cur) => prev + cur.points,
+    0,
+  );
 
   React.useEffect(() => {
     fetch("http://localhost:8000/questions")
@@ -82,6 +85,8 @@ function App() {
         questions={questions}
         index={index}
         answer={answer}
+        points={points}
+        maxPossiblePoints={maxPossiblePoints}
       />
     </div>
   );

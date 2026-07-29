@@ -3,8 +3,18 @@ import Error from "./Error.jsx";
 import Start from "./Start.jsx";
 import Question from "./Question.jsx";
 import NextButton from "./NextButton";
+import Progress from "./Progress.jsx";
 
-const Main = ({ status, numQuestions, dispatch, questions, index, answer }) => {
+const Main = ({
+  status,
+  numQuestions,
+  dispatch,
+  questions,
+  index,
+  answer,
+  points,
+  maxPossiblePoints,
+}) => {
   return (
     <main className="main">
       {status === "loading" && <Loader />}
@@ -14,6 +24,13 @@ const Main = ({ status, numQuestions, dispatch, questions, index, answer }) => {
       )}
       {status === "active" && (
         <>
+          <Progress
+            index={index}
+            numQuestions={numQuestions}
+            points={points}
+            maxPossiblePoints={maxPossiblePoints}
+            answer={answer}
+          />
           <Question
             question={questions[index]}
             dispatch={dispatch}
