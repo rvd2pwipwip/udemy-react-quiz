@@ -1,6 +1,6 @@
-const NextButton = ({ dispatch, answer }) => {
+const NextButton = ({ dispatch, answer, index, numQuestions }) => {
   if (answer === null) return null;
-  return (
+  return index !== numQuestions - 1 ? (
     <button
       className="btn btn-ui"
       onClick={() => {
@@ -8,6 +8,15 @@ const NextButton = ({ dispatch, answer }) => {
       }}
     >
       Next
+    </button>
+  ) : (
+    <button
+      className="btn btn-ui"
+      onClick={() => {
+        dispatch({ type: "finished" });
+      }}
+    >
+      Finish
     </button>
   );
 };

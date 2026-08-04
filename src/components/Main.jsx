@@ -4,6 +4,7 @@ import Start from "./Start.jsx";
 import Question from "./Question.jsx";
 import NextButton from "./NextButton";
 import Progress from "./Progress.jsx";
+import Finish from "./Finish.jsx";
 
 const Main = ({
   status,
@@ -14,6 +15,7 @@ const Main = ({
   answer,
   points,
   maxPossiblePoints,
+  highscore,
 }) => {
   return (
     <main className="main">
@@ -36,8 +38,22 @@ const Main = ({
             dispatch={dispatch}
             answer={answer}
           />
-          <NextButton dispatch={dispatch} answer={answer} />
+          <NextButton
+            dispatch={dispatch}
+            answer={answer}
+            index={index}
+            numQuestions={numQuestions}
+          />
         </>
+      )}
+      {status === "finished" && (
+        <Finish
+          points={points}
+          maxPossiblePoints={maxPossiblePoints}
+          numQuestions={numQuestions}
+          highscore={highscore}
+          dispatch={dispatch}
+        />
       )}
     </main>
   );
