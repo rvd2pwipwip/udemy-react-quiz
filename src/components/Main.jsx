@@ -5,6 +5,7 @@ import Question from "./Question.jsx";
 import NextButton from "./NextButton";
 import Progress from "./Progress.jsx";
 import Finish from "./Finish.jsx";
+import Timer from "./Timer.jsx";
 
 const Main = ({
   status,
@@ -16,6 +17,7 @@ const Main = ({
   points,
   maxPossiblePoints,
   highscore,
+  secondsRemaining,
 }) => {
   return (
     <main className="main">
@@ -38,12 +40,15 @@ const Main = ({
             dispatch={dispatch}
             answer={answer}
           />
-          <NextButton
-            dispatch={dispatch}
-            answer={answer}
-            index={index}
-            numQuestions={numQuestions}
-          />
+          <footer>
+            <Timer secondsRemaining={secondsRemaining} dispatch={dispatch} />
+            <NextButton
+              dispatch={dispatch}
+              answer={answer}
+              index={index}
+              numQuestions={numQuestions}
+            />
+          </footer>
         </>
       )}
       {status === "finished" && (

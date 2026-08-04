@@ -22,7 +22,7 @@ const Finish = ({ points, maxPossiblePoints, highscore, dispatch }) => {
           dispatch({ type: "restart" });
         }}
       >
-        Restart
+        Restart Quiz
       </button>
     </>
   );
